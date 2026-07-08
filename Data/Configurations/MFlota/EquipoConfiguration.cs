@@ -1,4 +1,4 @@
-﻿using ApiMantenimiento.Models.Entitys.MFlota;
+using ApiMantenimiento.Models.Entitys.MFlota;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -28,11 +28,21 @@ namespace ApiMantenimiento.Data.Configurations.MFlota
             builder.Property(x => x.cod_are_ope)
                    .HasColumnType("varchar(10)")
                    .IsRequired(); // Esto equivale al NOT NULL de tu SQL
-
+                                  // Conectar Equipo con AreaOperacion
+            builder.HasOne(x => x.AreaOperacion)
+                   .WithMany(a => a.Equipos)
+                   .HasForeignKey(x => x.cod_are_ope) // Aquí le dices: "¡Usa mi columna, no inventes una!"
+                   .OnDelete(DeleteBehavior.Restrict);
             // CONFIGURACIÓN DE LA RELACIÓN (1 a Muchos)
             builder.HasOne(x => x.Flota)
                    .WithMany(f => f.Equipos)
                    .HasForeignKey(x => x.id_flota)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            // CONFIGURACIÓN DE LA RELACIÓN (1 a 1)
+            builder.HasOne(x => x.Expediente)
+                   .WithOne(e => e.Equipo)
+                   .HasForeignKey<Expediente>(e => e.id_equipo)
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }

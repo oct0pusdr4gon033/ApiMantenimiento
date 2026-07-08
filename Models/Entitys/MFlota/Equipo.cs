@@ -1,4 +1,4 @@
-﻿namespace ApiMantenimiento.Models.Entitys.MFlota
+namespace ApiMantenimiento.Models.Entitys.MFlota
 {
     public class Equipo
     {
@@ -14,5 +14,8 @@
         
         public Flota Flota { get; set; }
         public AreaOperacion AreaOperacion { get; set; }
+        
+        // Relación 1 a 1 con Expediente
+        public Expediente Expediente { get; set; }
     }
 }

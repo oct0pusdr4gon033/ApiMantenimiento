@@ -10,6 +10,8 @@ namespace ApiMantenimiento.Models.Entitys.MFlota
         public string nombre_flota {get; set; }
         public string tipo_control { get; set;}
 
+        public ModeloEquipo ModeloEquipo { get; set; }
+
         // Propiedad de navegación: Una flota agrupa MUCHOS equipos
         public ICollection<Equipo> Equipos { get; set; }
     }

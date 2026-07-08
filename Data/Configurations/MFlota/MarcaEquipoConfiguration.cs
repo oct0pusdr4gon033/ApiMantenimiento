@@ -13,7 +13,7 @@ namespace ApiMantenimiento.Data.Configurations.MFlota
             // Llave Primaria (PK)
             builder.HasKey(x => x.id_marca);
             //nombre_marca
-            builder.Property(x => x.nombre_marca).HasColumnName("nombre_marca").HasMaxLength(10);
+            builder.Property(x => x.nombre_marca).HasColumnName("nombre_marca").HasMaxLength(100);
         }
 
     }
