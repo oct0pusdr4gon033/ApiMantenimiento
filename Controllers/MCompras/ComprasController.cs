@@ -214,6 +214,7 @@ namespace ApiMantenimiento.Controllers.MCompras
             }
             catch (Exception ex)
             {
+
                 return BadRequest(new { success = false, message = ex.Message });
             }
         }
